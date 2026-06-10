@@ -1,0 +1,16 @@
+{
+  "hero": "",
+  "specs": [
+    { "label": "Product", "value": "Gum Rosin" },
+    { "label": "Grades available", "value": "WW / WG / X (specify on inquiry)" },
+    { "label": "Softening Point", "value": "[ 填写,如 ≥76°C ]" },
+    { "label": "Acid Value", "value": "[ 填写 ]" },
+    { "label": "Color (Gardner)", "value": "[ 填写 ]" },
+    { "label": "Moisture", "value": "[ 填写 ]" },
+    { "label": "Packaging", "value": "25kg bag / 225kg or 250kg steel drum" },
+    { "label": "MOQ", "value": "[ 填写,如 1 x 20'FCL ]" },
+    { "label": "Lead Time", "value": "[ 填写,如 15-20 days ]" },
+    { "label": "Port of Loading", "value": "[ 填写 ]" },
+    { "label": "Payment Terms", "value": "T/T, L/C at sight" }
+  ]
+}

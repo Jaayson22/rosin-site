@@ -1,0 +1,125 @@
+# ============================================================
+#  Decap CMS 后台配置
+#  这个文件定义了后台里你能编辑哪些内容、每个框对应哪里。
+#  一般不用改它;要加新字段时再调整。
+# ============================================================
+
+backend:
+  name: git-gateway        # 配合 Netlify Identity 登录,无需自建服务器
+  branch: main             # 你的 GitHub 主分支名(通常是 main)
+
+# 后台上传的图片/视频存放位置
+media_folder: "assets"     # 文件实际存到这个文件夹
+public_folder: "assets"    # 网页引用时的路径
+
+# 后台界面语言提示(Decap 默认英文界面,字段标签我们用中文)
+locale: "en"
+
+collections:
+
+  # ---------- 首页 ----------
+  - name: "homepage"
+    label: "① 首页素材"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "home_media"
+        label: "首页图片与视频"
+        file: "content/home.json"
+        description: "首页两张产品卡片图、宣传视频"
+        fields:
+          - { name: "gumRosinImage", label: "松香卡片图", widget: "image", required: false, hint: "首页第一张产品卡片。留空则显示图标占位。" }
+          - { name: "steelDrumsImage", label: "钢桶卡片图", widget: "image", required: false, hint: "首页第二张产品卡片。留空则显示图标占位。" }
+          - { name: "promoVideo", label: "宣传视频", widget: "string", required: false, hint: "两种填法:① 上传视频请填 assets/你的视频.mp4 ② YouTube 填 https://www.youtube.com/embed/视频ID。留空则首页不显示视频区。" }
+
+  # ---------- 产品页 ----------
+  - name: "products"
+    label: "② 产品规格"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "gum_rosin"
+        label: "松香 Gum Rosin"
+        file: "content/product-gum-rosin.json"
+        description: "松香产品页:顶部大图 + 规格参数表"
+        fields:
+          - { name: "hero", label: "顶部大图", widget: "image", required: false, hint: "产品页顶部横幅图。留空则不显示。" }
+          - name: "specs"
+            label: "规格参数表(可增删每一行)"
+            widget: "list"
+            label_singular: "一行参数"
+            summary: "{{fields.label}}: {{fields.value}}"
+            fields:
+              - { name: "label", label: "参数名", widget: "string", hint: "如 MOQ、Softening Point" }
+              - { name: "value", label: "参数值", widget: "string", hint: "如 1 x 20'FCL、≥76°C" }
+      - name: "steel_drums"
+        label: "钢桶 Steel Drums"
+        file: "content/product-steel-drums.json"
+        description: "钢桶产品页:顶部大图 + 规格参数表"
+        fields:
+          - { name: "hero", label: "顶部大图", widget: "image", required: false }
+          - name: "specs"
+            label: "规格参数表(可增删每一行)"
+            widget: "list"
+            label_singular: "一行参数"
+            summary: "{{fields.label}}: {{fields.value}}"
+            fields:
+              - { name: "label", label: "参数名", widget: "string" }
+              - { name: "value", label: "参数值", widget: "string" }
+
+  # ---------- 关于页 ----------
+  - name: "about"
+    label: "③ 关于页图片"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "factory_photos"
+        label: "工厂与发货照片"
+        file: "content/about.json"
+        description: "关于页的工厂/装柜/展会照片画廊"
+        fields:
+          - name: "factoryPhotos"
+            label: "照片(想放几张加几张)"
+            widget: "list"
+            label_singular: "一张照片"
+            field: { name: "image", label: "照片", widget: "image" }
+
+  # ---------- 质量页 ----------
+  - name: "quality"
+    label: "④ 质量页证书"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "cert_photos"
+        label: "证书 / COA 扫描件"
+        file: "content/quality.json"
+        description: "质量页的证书、检测报告、COA 扫描件"
+        fields:
+          - name: "certPhotos"
+            label: "证书图片(想放几张加几张)"
+            widget: "list"
+            label_singular: "一张证书"
+            field: { name: "image", label: "证书图片", widget: "image" }
+
+  # ---------- 博客 ----------
+  - name: "blog"
+    label: "⑤ 博客文章"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "blog_list"
+        label: "所有博客文章"
+        file: "content/blog.json"
+        description: "在这里新建、修改、删除博客文章。点 + 加一篇,拖动可排序。"
+        fields:
+          - name: "posts"
+            label: "文章列表"
+            widget: "list"
+            label_singular: "一篇文章"
+            summary: "{{fields.title}}"
+            fields:
+              - { name: "title", label: "标题", widget: "string" }
+              - { name: "slug", label: "网址短名", widget: "string", hint: "只用小写英文字母和连字符,如 my-article。不要和别的文章重复。" }
+              - { name: "date", label: "日期", widget: "string", default: "2026", hint: "随便写,如 2026-07" }
+              - { name: "summary", label: "摘要(列表页显示的一句话)", widget: "text" }
+              - { name: "body", label: "正文", widget: "markdown", hint: "直接打字写正文。空一行就是分段。想要小标题,在那行开头打 ## 加空格。" }

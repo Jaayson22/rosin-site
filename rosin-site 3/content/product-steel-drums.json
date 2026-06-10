@@ -1,0 +1,14 @@
+{
+  "hero": "",
+  "specs": [
+    { "label": "Format", "value": "Knock-down (flat-pack) steel drum" },
+    { "label": "Capacity", "value": "250 kg" },
+    { "label": "Lid / Base", "value": "570 mm diameter, 0.4 mm thickness" },
+    { "label": "Body sheet", "value": "1000 x 1815 mm, 0.35 mm thickness" },
+    { "label": "Material", "value": "Cold-rolled steel (specify grade on inquiry)" },
+    { "label": "Custom options", "value": "Size, thickness, coating, printing" },
+    { "label": "MOQ", "value": "[ 填写 ]" },
+    { "label": "Lead Time", "value": "[ 填写 ]" },
+    { "label": "Payment Terms", "value": "T/T, L/C at sight" }
+  ]
+}
